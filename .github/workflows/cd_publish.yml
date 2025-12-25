@@ -18,7 +18,7 @@ jobs:
     if: github.event.repository.fork == false
     name: Release Please
     outputs:
-      release_created: ${{ steps.release.outputs.release_created }}
+      release_created: ${{ steps.release.outputs.releases_created }}
     steps:
       - name: 🤝 Release Please
         uses: googleapis/release-please-action@v4
@@ -41,7 +41,7 @@ jobs:
         with:
           bun-version: latest
 
-      - name: ➕ Cache dependencies
+      - name: ➕ Cache Dependencies
         uses: actions/cache@v4
         with:
           path: ~/.bun
