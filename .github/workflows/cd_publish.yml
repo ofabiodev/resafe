@@ -58,6 +58,4 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          cd packages/resafe
-          npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
-          npm publish --provenance --access public
+          npm publish --workspace packages/resafe --provenance --access public
