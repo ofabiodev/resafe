@@ -1,14 +1,76 @@
-const C = {
-  reset: "\x1b[0m",
-  yellow: "\x1b[33m",
-  red: "\x1b[31m",
-  gray: "\x1b[90m",
+import { stdout } from "node:process"
+
+const ESC = "\x1b["
+
+class Formatter {
+  private parts = ""
+  private text: string
+
+  constructor(text: string) {
+    this.text = text
+  }
+
+  code(code: string) {
+    this.parts += `${ESC}${code}m`
+    return this
+  }
+  static create(text: string) {
+    return new Formatter(text)
+  }
+  bold() {
+    return this.code("1")
+  }
+  white() {
+    return this.code("97")
+  }
+  darkGray() {
+    return this.code("90")
+  }
+  red() {
+    return this.code("38;2;255;85;85")
+  }
+  pastelRedBg() {
+    return this.code("48;2;255;85;85")
+  }
+
+  toString() {
+    return `${this.parts}${this.text}${ESC}0m`
+  }
+  [Symbol.toPrimitive]() {
+    return this.toString()
+  }
 }
 
-export const S = { WARN: "!", ERROR: "x" }
+const fmt = (text: string) => Formatter.create(text)
 
 export const log = {
-  warn: (m: string) => console.log(`${C.yellow}${S.WARN}${C.reset} ${m}`),
-  error: (m: string) => console.log(`${C.red}${S.ERROR}${C.reset} ${m}`),
-  hint: (m: string) => console.log(`${C.gray}${m}${C.reset}`),
+  error: (msg: string, regex?: string, extra?: string[]) => {
+    let firstLine = `${fmt(" RESAFE ").bold().pastelRedBg().white()} ${fmt(msg).white()}`
+    if (regex) {
+      firstLine += ` ${fmt("regex").red()}${fmt("=").darkGray()}${fmt(regex).white()}`
+    }
+    stdout.write(`${firstLine}\n`)
+    if (extra) log.quote(extra)
+  },
+
+  warn: (msg: string, regex?: string, extra?: string[]) => {
+    let firstLine = `${fmt(" RESAFE ").bold().pastelRedBg().white()} ${fmt(msg).white()}`
+    if (regex) {
+      firstLine += ` ${fmt("regex").red()}${fmt("=").darkGray()}${fmt(regex).white()}`
+    }
+    stdout.write(`${firstLine}\n`)
+    if (extra) log.quote(extra)
+  },
+
+  hint: (msg: string | string[]) => {
+    const lines = Array.isArray(msg) ? msg : [msg]
+    log.quote(lines)
+  },
+
+  quote: (lines: string[]) => {
+    lines.forEach((line) => {
+      stdout.write(`  ${fmt("│").darkGray()} ${fmt(line).white()}\n`)
+    })
+    stdout.write("\n")
+  },
 }
