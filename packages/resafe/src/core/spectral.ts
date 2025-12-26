@@ -270,45 +270,45 @@ export function spectralRadius(matrix: number[][]): number {
 
   let v = Array(n).fill(1 / Math.sqrt(n))
 
-  for (let iter = 0; iter < 100; iter++) {
+  const tolerance = 1e-6
+  const maxIterations = 100
+
+  for (let iter = 0; iter < maxIterations; iter++) {
     const newV = Array(n).fill(0)
 
     for (let i = 0; i < n; i++) {
-      const row = matrix[i]
-      if (row) {
-        for (let j = 0; j < n; j++) {
-          const cell = row[j]
-          const vec = v[j]
-          if (cell !== undefined && vec !== undefined) {
-            newV[i] += cell * vec
-          }
-        }
+      const row = matrix[i] ?? []
+      for (let j = 0; j < n; j++) {
+        const cell = row[j] ?? 0
+        newV[i] += cell * v[j]
       }
     }
 
     const norm = Math.sqrt(newV.reduce((sum, val) => sum + val * val, 0))
     if (norm === 0) return 0
+    const normalizedV = newV.map((val) => val / norm)
 
-    v = newV.map((val) => val / norm)
+    let converged = true
+    for (let i = 0; i < n; i++) {
+      const a = normalizedV[i]
+      const b = v[i]
+      if (a !== undefined && b !== undefined && Math.abs(a - b) > tolerance) {
+        converged = false
+        break
+      }
+}
+    if (converged) break
+    v = normalizedV
   }
 
   let eigenvalue = 0
   for (let i = 0; i < n; i++) {
+    const row = matrix[i] ?? []
     let sum = 0
-    const row = matrix[i]
-    if (row) {
-      for (let j = 0; j < n; j++) {
-        const cell = row[j]
-        const vec = v[j]
-        if (cell !== undefined && vec !== undefined) {
-          sum += cell * vec
-        }
-      }
+    for (let j = 0; j < n; j++) {
+      sum += (row[j] ?? 0) * v[j]
     }
-    const vecI = v[i]
-    if (vecI !== undefined) {
-      eigenvalue += sum * vecI
-    }
+    eigenvalue += sum * v[i]
   }
 
   return Math.abs(eigenvalue)
