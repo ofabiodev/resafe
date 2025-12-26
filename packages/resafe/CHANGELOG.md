@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/ofabiodev/resafe/compare/v1.0.1...v1.0.2) (2025-12-26)
+
+
+### Performance Improvements
+
+* early stopping power iteration) ([#8](https://github.com/ofabiodev/resafe/issues/8)) ([99f84a8](https://github.com/ofabiodev/resafe/commit/99f84a84c4d4a1e4a366d5823403e274202bb501))
+
 ## [1.0.1](https://github.com/ofabiodev/resafe/compare/v1.0.0...v1.0.1) (2025-12-26)
 
 
