@@ -11,16 +11,15 @@ export function check(regex: string | RegExp, options: Options = {}): Result {
   const result = analyze(pattern, options)
 
   if (!result.safe && !options.silent) {
-    log.error(`[Resafe] Unsafe pattern: /${pattern}/`)
-    log.warn(
+    log.error("Unsafe Regex!", `/${pattern}/`, [
       `Spectral radius: ${result.radius.toFixed(4)} (threshold: ${options.threshold ?? 1.0})`,
-    )
-    log.hint("Simplify regex structure to eliminate exponential paths")
+      "? Consider simplifying quantifiers",
+    ])
   }
 
   if (!result.safe && options.throwErr) {
     throw new Error(
-      `[Resafe] Unsafe pattern with spectral radius ${result.radius.toFixed(4)}`,
+      `Unsafe regex (spectral radius ${result.radius.toFixed(4)})`,
     )
   }
 
