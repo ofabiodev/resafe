@@ -8,8 +8,8 @@
 <br/>
 
 <p align="center">
- <a href="https://github.com/ofabiodev/resafe/actions?query=branch%3Amain" rel="nofollow"><img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/ofabiodev/resafe/test.yml?branch=main&event=push"></a>
- <a href="https://opensource.org/licenses/MIT" rel="nofollow"><img alt="GitHub License" src="https://img.shields.io/github/license/ofabiodev/resafe"></a>
+ <a href="https://github.com/ofabiodev/resafe/actions?query=branch%3Amain" rel="nofollow"><img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/ofabiodev/resafe/ci_test.yml?branch=main&event=push"></a>
+ <a href="https://opensource.org/licenses/MIT" rel="nofollow"><img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen"></a>
  <a href="https://www.npmjs.com/package/resafe" rel="nofollow"><img alt="NPM Downloads" src="https://img.shields.io/npm/dw/resafe"></a>
 </p>
 
