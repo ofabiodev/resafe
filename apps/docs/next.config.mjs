@@ -13,7 +13,7 @@ const config = {
     ],
   },
   output: "export",
-  trailingSlash: true
+  trailingSlash: true,
 }
 
 export default withMDX(config)

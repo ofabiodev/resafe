@@ -17,7 +17,7 @@ export function check(regex: string | RegExp, options: Options = {}): Result {
       lines: [
         `Spectral radius: ${radius} (threshold: ${options.threshold ?? 1.0})`,
         "? Consider simplifying quantifiers",
-      ]
+      ],
     })
   }
 
