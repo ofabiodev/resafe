@@ -12,16 +12,17 @@ export function check(regex: string | RegExp, options: Options = {}): Result {
   const radius = Number(result.radius.toFixed(4))
 
   if (!result.safe && !options.silent) {
-    log.error("Unsafe Regex!", `/${pattern}/`, [
-      `Spectral radius: ${radius} (threshold: ${options.threshold ?? 1.0})`,
-      "? Consider simplifying quantifiers",
-    ])
+    log.error("Unsafe Regex!", {
+      property: { name: "regex", value: `/${pattern}/`, color: (f) => f.red() },
+      lines: [
+        `Spectral radius: ${radius} (threshold: ${options.threshold ?? 1.0})`,
+        "? Consider simplifying quantifiers",
+      ]
+    })
   }
 
   if (!result.safe && options.throwErr) {
-    throw new Error(
-      `Unsafe regex (spectral radius ${radius})`,
-    )
+    throw new Error(`Unsafe regex (spectral radius ${radius})`)
   }
 
   return result

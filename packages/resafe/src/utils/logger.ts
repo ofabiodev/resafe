@@ -14,9 +14,11 @@ class Formatter {
     this.parts += `${ESC}${code}m`
     return this
   }
+
   static create(text: string) {
     return new Formatter(text)
   }
+
   bold() {
     return this.code("1")
   }
@@ -29,8 +31,20 @@ class Formatter {
   red() {
     return this.code("38;2;255;85;85")
   }
+  yellow() {
+    return this.code("38;2;255;200;50")
+  }
+  blue() {
+    return this.code("38;2;100;149;237")
+  }
+  green() {
+    return this.code("38;2;85;255;85")
+  }
   pastelRedBg() {
     return this.code("48;2;255;85;85")
+  }
+  pastelYellowBg() {
+    return this.code("48;2;255;200;50")
   }
 
   toString() {
@@ -43,34 +57,46 @@ class Formatter {
 
 const fmt = (text: string) => Formatter.create(text)
 
-export const log = {
-  error: (msg: string, regex?: string, extra?: string[]) => {
-    let firstLine = `${fmt(" RESAFE ").bold().pastelRedBg().white()} ${fmt(msg).white()}`
-    if (regex) {
-      firstLine += ` ${fmt("regex").red()}${fmt("=").darkGray()}${fmt(regex).white()}`
+export type LogProperty = {
+  name: string
+  value: string
+  color?: (fmt: Formatter) => Formatter
+}
+
+export type LogOptions = {
+  property?: LogProperty
+  lines?: string[]
+}
+
+function formatLogLine(
+  prefixBg: (f: Formatter) => Formatter,
+  msg: string,
+  options?: LogOptions,
+) {
+  const prefix = prefixBg(fmt(" RESAFE ").bold()).white()
+  let line = `${prefix} ${fmt(msg).white()}`
+
+  if (options?.property) {
+    const prop = options.property
+    const nameFmt = prop.color
+      ? prop.color(fmt(prop.name))
+      : fmt(prop.name).bold()
+    line += ` ${nameFmt}${fmt("=").darkGray()}${fmt(prop.value).white()}`
+  }
+
+  stdout.write(`${line}\n`)
+
+  if (options?.lines) {
+    for (const l of options.lines) {
+      stdout.write(`  ${fmt("│").darkGray()} ${fmt(l).white()}\n`)
     }
-    stdout.write(`${firstLine}\n`)
-    if (extra) log.quote(extra)
-  },
-
-  warn: (msg: string, regex?: string, extra?: string[]) => {
-    let firstLine = `${fmt(" RESAFE ").bold().pastelRedBg().white()} ${fmt(msg).white()}`
-    if (regex) {
-      firstLine += ` ${fmt("regex").red()}${fmt("=").darkGray()}${fmt(regex).white()}`
-    }
-    stdout.write(`${firstLine}\n`)
-    if (extra) log.quote(extra)
-  },
-
-  hint: (msg: string | string[]) => {
-    const lines = Array.isArray(msg) ? msg : [msg]
-    log.quote(lines)
-  },
-
-  quote: (lines: string[]) => {
-    lines.forEach((line) => {
-      stdout.write(`  ${fmt("│").darkGray()} ${fmt(line).white()}\n`)
-    })
     stdout.write("\n")
-  },
+  }
+}
+
+export const log = {
+  error: (msg: string, options?: LogOptions) =>
+    formatLogLine((f) => f.pastelRedBg(), msg, options),
+  warn: (msg: string, options?: LogOptions) =>
+    formatLogLine((f) => f.pastelYellowBg(), msg, options),
 }
