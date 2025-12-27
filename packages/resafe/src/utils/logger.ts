@@ -81,7 +81,7 @@ function formatLogLine(
     const nameFmt = prop.color
       ? prop.color(fmt(prop.name))
       : fmt(prop.name).bold()
-    line += ` ${nameFmt}=${fmt(prop.value).white()}`
+    line += ` ${nameFmt}${fmt("=").darkGray()}${fmt(prop.value).white()}`
   }
 
   stdout.write(`${line}\n`)
