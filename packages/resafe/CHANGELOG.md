@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/ofabiodev/resafe/compare/v1.0.2...v1.0.3) (2025-12-27)
+
+
+### Bug Fixes
+
+* unify log formatting with customizable colors and properties ([#11](https://github.com/ofabiodev/resafe/issues/11)) ([7cfb28f](https://github.com/ofabiodev/resafe/commit/7cfb28f1420faef127429aa568ed0d03850e315a))
+
 ## [1.0.2](https://github.com/ofabiodev/resafe/compare/v1.0.1...v1.0.2) (2025-12-26)
 
 
