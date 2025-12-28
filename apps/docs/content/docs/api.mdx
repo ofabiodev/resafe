@@ -51,3 +51,32 @@ interface Result {
   radius: number;    // Spectral radius value
 }
 ```
+
+---
+
+## `checkAsync(regex, options)`
+
+Asynchronous version of `check()` that returns a Promise. Useful for integration with async workflows.
+
+```ts
+import { checkAsync } from "resafe";
+
+const result = await checkAsync(pattern, options);
+```
+
+### Parameters
+
+Same as `check()`:
+- `regex`: `string | RegExp` - The regex pattern to analyze
+- `options`: `Options` - Configuration options (optional)
+
+### Return Value
+
+Returns a `Promise<Result>`:
+
+```ts
+interface Result {
+  safe: boolean;
+  radius: number;
+}
+```
