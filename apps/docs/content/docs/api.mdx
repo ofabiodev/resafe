@@ -51,21 +51,3 @@ interface Result {
   radius: number;    // Spectral radius value
 }
 ```
-
-### Examples
-
-```ts
-// Basic usage
-const result = check("(a+)+");
-console.log(result.safe);    // false
-console.log(result.radius);  // 4.0
-
-// Custom threshold
-const result2 = check("(a+)+", { threshold: 5.0 });
-console.log(result2.safe);   // true (radius 4.0 < 5.0)
-
-// Silent mode
-const result3 = check("^[0-9]+$", { silent: true });
-console.log(result3.safe);   // true
-console.log(result3.radius); // 1.0
-```
