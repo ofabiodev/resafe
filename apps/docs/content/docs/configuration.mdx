@@ -20,14 +20,6 @@ check("(a+)+$", { threshold: 5.0 });  // ✅ Safe (radius 4.0 < 5.0)
 check("a+", { threshold: 0.5 }); // May flag some patterns
 ```
 
-### Recommended Thresholds
-
-| Environment | Threshold | Description |
-| :--- | :--- | :--- |
-| **Production** | `1.0` (default) | Standard exponential detection |
-| **Strict** | `0.8` | More conservative |
-| **Permissive** | `2.0` | Allow some complexity |
-
 ## Silent Mode
 
 Suppress console output while still getting analysis results:
