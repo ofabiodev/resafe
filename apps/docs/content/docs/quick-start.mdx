@@ -19,9 +19,9 @@ check("(a+)+$");
 
 /*
 Output:
-x [Resafe] Unsafe pattern: /(a+)+$/
-! Spectral radius: 4.0 (threshold: 1.0)
-  Simplify regex structure to eliminate exponential paths
+ RESAFE  Unsafe Regex! regex=/(a+)+$/
+  │ Spectral radius: 4 (threshold: 1)
+  │ ? Consider simplifying quantifiers
 */
 ```
 </Step>
