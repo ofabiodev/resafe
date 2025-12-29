@@ -296,7 +296,7 @@ export function spectralRadius(matrix: number[][]): number {
         converged = false
         break
       }
-}
+    }
     if (converged) break
     v = normalizedV
   }
