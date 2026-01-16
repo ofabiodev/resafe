@@ -21,18 +21,6 @@
 ## What is Resafe?
 **Resafe** is a mathematical ReDoS detection engine that uses **Thompson NFA construction**, **epsilon transition elimination**, and **spectral radius analysis** to detect exponential backtracking vulnerabilities. By analyzing the automaton's adjacency matrix eigenvalues, Resafe determines if a regex has exponential growth patterns without executing test strings.
 
-```ts
-import { check } from "resafe";
-
-check("(a+)+$");
-
-/* 
-  x [Resafe] Unsafe pattern: /(a+)+$/
-  ! Spectral radius: 4.0 (threshold: 1.0)
-    Simplify regex structure to eliminate exponential paths
-*/
-```
-
 ## Features
 
 - **Pure Mathematical Analysis**: Thompson NFA construction with spectral radius computation
@@ -42,16 +30,59 @@ check("(a+)+$");
 
 ## Installation
 
-```sh
-# Using Bun (Recommended)
-bun add resafe
+<table>
+<tr>
+<td width="300">
 
+```bash
+# Using Bun
+bun add resafe
+```
+
+</td>
+<td width="300">
+
+```bash
 # Using NPM
 npm install resafe
+```
 
+</td>
+<td width="300">
+
+```bash
 # Using Yarn
 yarn add resafe
 ```
+
+</td>
+</tr>
+</table>
+
+## Detection Examples
+
+<table>
+  <tr>
+    <th>Pattern</th>
+    <th>Status</th>
+    <th>Reason</th>
+  </tr>
+  <tr>
+    <td><code>(a+)+$</code></td>
+    <td><code>Unsafe</code></td>
+    <td><code>Exponential backtracking</code></td>
+  </tr>
+  <tr>
+    <td><code>^[0-9]$</code></td>
+    <td><code>Safe</code></td>
+    <td><code>Single path</code></td>
+  </tr>
+  <tr>
+    <td><code>(ab|a)*</code></td>
+    <td><code>Unsafe</code></td>
+    <td><code>Ambiguous paths</code></td>
+  </tr>
+</table>
 
 ## Basic Usage
 
