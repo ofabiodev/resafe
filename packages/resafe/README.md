@@ -21,18 +21,6 @@
 ## What is Resafe?
 **Resafe** is a mathematical ReDoS detection engine that uses **Thompson NFA construction**, **epsilon transition elimination**, and **spectral radius analysis** to detect exponential backtracking vulnerabilities. By analyzing the automaton's adjacency matrix eigenvalues, Resafe determines if a regex has exponential growth patterns without executing test strings.
 
-```ts
-import { check } from "resafe";
-
-check("(a+)+$");
-
-/* 
-  x [Resafe] Unsafe pattern: /(a+)+$/
-  ! Spectral radius: 4.0 (threshold: 1.0)
-    Simplify regex structure to eliminate exponential paths
-*/
-```
-
 ## Features
 
 - **Pure Mathematical Analysis**: Thompson NFA construction with spectral radius computation
@@ -42,21 +30,45 @@ check("(a+)+$");
 
 ## Installation
 
-```sh
-# Using Bun (Recommended)
-bun add resafe
+<table>
+<tr>
+<td width="300">
 
+```bash
+# Using Bun
+bun add resafe
+```
+
+</td>
+<td width="300">
+
+```bash
 # Using NPM
 npm install resafe
+```
 
+</td>
+<td width="300">
+
+```bash
 # Using Yarn
 yarn add resafe
 ```
 
+</td>
+</tr>
+</table>
+
 ## Basic Usage
 
-### Simple Analysis
-By default, Resafe logs warnings and errors to the console if a pattern is unsafe.
+<table>
+<tr>
+<td>
+<blockquote>Simple pattern check</blockquote>
+</td>
+</tr>
+<tr>
+<td width="1200">
 
 ```ts
 import { check } from "resafe";
@@ -64,8 +76,18 @@ import { check } from "resafe";
 check(/([a-zA-Z0-9]+)*$/);
 ```
 
-### Production Guard
-Prevent unsafe regex from being used by throwing an error.
+</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td>
+<blockquote>Production-safe pattern validation</blockquote>
+</td>
+</tr>
+<tr>
+<td width="1200">
 
 ```ts
 import { check } from "resafe";
@@ -76,8 +98,18 @@ const safeRegex = check("^[0-9]+$", {
 });
 ```
 
-### Advanced Configuration
-Configure detection threshold.
+</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td>
+<blockquote>Custom threshold configuration</blockquote>
+</td>
+</tr>
+<tr>
+<td width="1200">
 
 ```ts
 import { check } from "resafe";
@@ -86,6 +118,10 @@ check("a+a+", {
   threshold: 1.5
 });
 ```
+
+</td>
+</tr>
+</table>
 
 ## Why Resafe?
 
