@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/ofabiodev/resafe/compare/v1.0.3...v1.0.4) (2026-01-22)
+
+
+### Miscellaneous Chores
+
+* clean up README, license and package metadata ([#14](https://github.com/ofabiodev/resafe/issues/14)) ([287dff6](https://github.com/ofabiodev/resafe/commit/287dff6317899d51516195daaab8c13222f99e22))
+
 ## [1.0.3](https://github.com/ofabiodev/resafe/compare/v1.0.2...v1.0.3) (2025-12-27)
 
 

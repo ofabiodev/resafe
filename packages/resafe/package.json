@@ -1,6 +1,6 @@
 {
   "name": "resafe",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Detects ReDoS vulnerabilities in regexes using Thompson NFA construction and spectral radius analysis.",
   "license": "MIT",
   "homepage": "https://resafe.js.org",
