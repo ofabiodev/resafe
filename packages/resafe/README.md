@@ -61,8 +61,14 @@ yarn add resafe
 
 ## Basic Usage
 
-### Simple Analysis
-By default, Resafe logs warnings and errors to the console if a pattern is unsafe.
+<table>
+<tr>
+<td>
+<blockquote>Simple pattern check</blockquote>
+</td>
+</tr>
+<tr>
+<td width="1200">
 
 ```ts
 import { check } from "resafe";
@@ -70,8 +76,18 @@ import { check } from "resafe";
 check(/([a-zA-Z0-9]+)*$/);
 ```
 
-### Production Guard
-Prevent unsafe regex from being used by throwing an error.
+</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td>
+<blockquote>Production-safe pattern validation</blockquote>
+</td>
+</tr>
+<tr>
+<td width="1200">
 
 ```ts
 import { check } from "resafe";
@@ -82,8 +98,18 @@ const safeRegex = check("^[0-9]+$", {
 });
 ```
 
-### Advanced Configuration
-Configure detection threshold.
+</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td>
+<blockquote>Custom threshold configuration</blockquote>
+</td>
+</tr>
+<tr>
+<td width="1200">
 
 ```ts
 import { check } from "resafe";
@@ -92,6 +118,10 @@ check("a+a+", {
   threshold: 1.5
 });
 ```
+
+</td>
+</tr>
+</table>
 
 ## Why Resafe?
 
