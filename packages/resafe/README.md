@@ -59,31 +59,6 @@ yarn add resafe
 </tr>
 </table>
 
-## Detection Examples
-
-<table>
-  <tr>
-    <th>Pattern</th>
-    <th>Status</th>
-    <th>Reason</th>
-  </tr>
-  <tr>
-    <td><code>(a+)+$</code></td>
-    <td><code>Unsafe</code></td>
-    <td><code>Exponential backtracking</code></td>
-  </tr>
-  <tr>
-    <td><code>^[0-9]$</code></td>
-    <td><code>Safe</code></td>
-    <td><code>Single path</code></td>
-  </tr>
-  <tr>
-    <td><code>(ab|a)*</code></td>
-    <td><code>Unsafe</code></td>
-    <td><code>Ambiguous paths</code></td>
-  </tr>
-</table>
-
 ## Basic Usage
 
 ### Simple Analysis
