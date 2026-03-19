@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.5](https://github.com/ofabiodev/resafe/compare/v1.0.4...v1.0.5) (2026-03-19)
+
+
+### Bug Fixes
+
+* remove example.ts added by mistake in previous commit ([#18](https://github.com/ofabiodev/resafe/issues/18)) ([7acdc6f](https://github.com/ofabiodev/resafe/commit/7acdc6fc9f369ec16599f7fc518c2c548293c23e))
+
 ## [1.0.4](https://github.com/ofabiodev/resafe/compare/v1.0.3...v1.0.4) (2026-01-22)
 
 
